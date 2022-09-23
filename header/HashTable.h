@@ -6,6 +6,12 @@
 #ifndef __HASHTABLE_H__
 #define __HASHTABLE_H__
 
+/**
+ * Alternatively, instead of each element in the hash table array being an ItemNode pointer,
+ * we could make each element (or bucket) hold a linked list so we can directly call
+ * functions from the linked list class like "push_back" or "insert_ordered"
+ */
+
 struct ItemNode {
     std::string name;
     std::string drink;
@@ -24,6 +30,7 @@ class Hash {
         // hash function
         int hash(const std::string &key);
         // add item function
+        void AddItem(const std::string &name, const std::string &drink);
 
     private:
         int tableSize;
