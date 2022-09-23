@@ -31,6 +31,8 @@ class Hash {
         int hash(const std::string &key);
         // add item function
         void AddItem(const std::string &name, const std::string &drink);
+        // num of items in a bucket
+        int numItemInBucket(int index) const; // passes in an index (bucket) as param
 
     private:
         int tableSize;

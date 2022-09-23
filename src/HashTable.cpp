@@ -57,3 +57,23 @@ void Hash::AddItem(const std::string &name, const std::string &drink) {
         temp->next = n; // links the last item to the newly created item n is pointing to
     }
 }
+
+// number of items in a bucket fucntion
+int Hash::numItemInBucket(int index) const{
+    int count = 0;
+
+    // if the desired bucket is empty
+    if (hashTable[index] == nullptr) {
+        return 0;
+    } else { // if not
+        ItemNode *temp = hashTable[index]; // temp pointer that points to the top of the bucket
+        
+        // loops thru the bucket list and increments count for each item node visited
+        while (temp != nullptr) {
+            count++;
+            temp = temp->next;
+        }
+    }
+
+    return count;
+}
