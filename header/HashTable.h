@@ -43,6 +43,10 @@ class Hash {
         void printTable() const;
         // print items in bucket functions
         void PrintItemsInBucket(int index) const;
+        // searching function
+        void findDrink(const std::string &name);
+        // remove item function
+        void RemoveItem(const std::string &name);
 
     private:
         int tableSize;

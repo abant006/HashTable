@@ -6,6 +6,7 @@
 
 int main() {
     Hash myHash;
+    std::string name = "";
 
     myHash.AddItem("Paul", "Locha");
     myHash.AddItem("Kim", "Iced Mocha");
@@ -24,6 +25,16 @@ int main() {
 
     //myHash.PrintItemsInBucket(0);
     //myHash.PrintItemsInBucket(9);
-    myHash.PrintItemsInBucket(8);
+    //myHash.PrintItemsInBucket(8);
+
+    // searching for a specific key and associated info testing
+    while (name != "exit") {
+        std::cout << "Search for a name: ";
+        std::cin >> name;
+
+        if (name != "exit") {
+            myHash.findDrink(name);
+        }
+    }
     
 }
