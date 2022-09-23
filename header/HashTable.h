@@ -10,6 +10,12 @@
  * Alternatively, instead of each element in the hash table array being an ItemNode pointer,
  * we could make each element (or bucket) hold a linked list so we can directly call
  * functions from the linked list class like "push_back" or "insert_ordered"
+ * 
+ * Also, think about taking the last number in the ASCII "index" (in hash function)
+ * and taking the last digit of the ASCII number for the index using modulo
+ * This will allow us to create a hashtable with only 10 elements, instead of say, 100.
+ * 
+ * hash % 10 will give us last digit for indices
  */
 
 struct ItemNode {
@@ -33,6 +39,10 @@ class Hash {
         void AddItem(const std::string &name, const std::string &drink);
         // num of items in a bucket
         int numItemInBucket(int index) const; // passes in an index (bucket) as param
+        // print table function
+        void printTable() const;
+        // print items in bucket functions
+        void PrintItemsInBucket(int index) const;
 
     private:
         int tableSize;

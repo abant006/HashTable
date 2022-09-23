@@ -24,7 +24,6 @@ int Hash::hash(const std::string &key) {
     for (int i = 0; i < key.length(); i++) {
         // adding up all the ASCII values of the string passed in
         hash = hash + (int)key[i]; // type casting the letter to an int (letter -> ASCII value)
-        std::cout << "hash = " << hash << std::endl;
     }
 
     // index is becoming lambda (loading factor)
@@ -36,6 +35,7 @@ int Hash::hash(const std::string &key) {
 void Hash::AddItem(const std::string &name, const std::string &drink) {
     // holds the location in the hashtable that we want to store the information
     // call the hash function we made
+    // pass the name into the hash function, and itll get the name's added ASCII value and return an index to use
     int index = hash(name);
 
     // if the bucket we want to insert into in the hashtable is pointing to nullptr, then it's empty
@@ -76,4 +76,47 @@ int Hash::numItemInBucket(int index) const{
     }
 
     return count;
+}
+
+// prints the items at the top of each bucket, and tells how many items are in the bucket
+void Hash::printTable() const {
+    int number = 0; // hold the number of each item in a bucket
+
+    for (int i = 0; i < tableSize; i++) {
+        number = numItemInBucket(i); // stores the number of items in each bucket
+        std::cout << "---------------------------\n";
+        std::cout << "bucket/index = " << i << std::endl;
+
+        // if the bucket is not empty, then print the top item's name and fav drink
+        if (hashTable[i] != nullptr) {
+            std::cout << hashTable[i]->name << std::endl;
+            std::cout << hashTable[i]->drink << std::endl;
+        }
+        
+        std::cout << "# of items = " << number << std::endl;
+        std::cout << "---------------------------\n";
+    }
+}
+
+// function that will print all the items within a bucket
+void Hash::PrintItemsInBucket(int index) const {
+    // temp ItemNode pointer that points to the first item in the desired bucket
+    ItemNode *temp = hashTable[index]; 
+
+    // if there's nothing in the bucket
+    if (temp == nullptr) {
+        std::cout << "Index/Bucket = " << index << " is empty" << std::endl;
+    } else {
+        std::cout << "Index/Bucket " << index << " contains the following items: " << std::endl;
+
+        // loop through all the items in the bucket and print info out
+        while (temp != nullptr) {
+            std::cout << "---------------------------\n";
+            std::cout << temp->name << std::endl;
+            std::cout << temp->drink << std::endl;
+            std::cout << "---------------------------\n";
+
+            temp = temp->next;
+        }
+    }
 }
